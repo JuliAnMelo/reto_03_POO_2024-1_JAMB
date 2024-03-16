@@ -315,3 +315,82 @@ if __name__ == "__main__":
     print(f"\nThe total bill is:     ${challenge_03.execute()} \nThanks for coming!")
 ```
 This bad boy above initialize the program. The End
+
+### Appendix
+The class diagram (non) representative of the program, i am so bad at this.
+```mermaid
+classDiagram
+    MenuItem <|-- MainCourse
+    MenuItem <|-- Appetizer
+    MenuItem <|-- Beverage
+    MenuItem: +calculate_total_price(self)
+
+    MainCourse <|-- Rice
+    MainCourse <|-- Meat
+    MainCourse <|-- Pasta
+    MainCourse <|-- Vegetables
+    MainCourse : + str addition("No Extra", "Extra") 
+    
+
+    class Rice{
+    +string color("White", "Yellow", "Green")
+    }
+    class Meat{
+    +string color("Meat", "No Meat")
+    }
+    class Pasta{
+    +string variety("Spaguetti", "Shells", "Macaroni")
+    }
+    class Vegetables{
+    +string preparation("Boiled", "Baked", "Sauteed")
+    }
+
+
+    Appetizer <|-- Soup
+    Appetizer <|-- Egg
+    Appetizer <|-- Fruit
+    Appetizer <|-- Salad
+    Appetizer : +str double("Simple", "Double")
+
+    class Soup{
+    +string type("Corn", "Tomato", "Chicken")
+
+    }
+    class Egg{
+    +string preparation("Boiled", "Fried", "Scrambled")
+ 
+    }
+    class Fruit{
+    +string type("Banana", "Apple", "Strawberry")
+
+    }
+    class Salad{
+    +string aditive("No Aditive", "Vinegar", "Vinaigrette", "Olive Oil")
+    }
+
+
+    Beverage <|-- Water
+    Beverage <|-- Juice
+    Beverage <|-- Soda
+    Beverage <|-- Beer
+    Beverage : +string size("Small", "Regular", "Large")
+
+
+
+    class Water{
+
+    }
+    class Juice{
+    +string flavor("Orange", "Blackberry", "Mango")
+    
+
+    }
+    class Soda{
+    +string flavor("Coke", "Lemon", "Grapefruit")
+    
+    }
+    class Beer{
+    +string brand("Corona", "Budweiser", "Heineken")
+
+    }
+```
