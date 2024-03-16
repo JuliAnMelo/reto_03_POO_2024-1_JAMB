@@ -398,27 +398,36 @@ classDiagram
 ### Appendix II
 The rectangle class seen in class.
 ```python
-class Rectangle:                                       
-    definition: str = "Entidad geometrica que representa la intersección de cuatro rectas, dos de ellas paralelas entre sí y perpendiculares a las dos restantes, las cuales son paralelas entre sí"  
-    def __init__(self, width: float=0, height: float=0, bottom_left_corner: Point=0):                
-        self.width = width                              
-        self.height = height  
-        self.bottom_left_corner = bottom_left_corner                          
-    def compute_area(self):
-        area = self.width * self.height
-        print(f"The area of the rectangle is: {area}")
-    def compute_perimeter(self):
-        perimeter = (self.width * 2) + (self.height * 2)
-        print(f"The perimeter of the rectangle is: {perimeter}")   
-    def compute_interference_point(self, point: Point=0):
-        x_total, y_total = self.width, self.height
-        x_min, y_min = self.bottom_left_corner.x, self.bottom_left_corner.y 
-        if (x_min <= point.x <= (x_min + x_total)) and (y_min <= point.y <= (y_min + y_total)): 
-            print("The point is in the rectangle")
-        else: print("The point is NOT in the rectangle")
+class Line:
+    def __init__(self, start: Point=0, end: Point=0):
+        self.start = start
+        self.end = end
 
-class Square(Rectangle):
-    definition: str = "Entidad geometrica que representa la intersección de cuatro rectas, un par de ellas paralelas entre sí y perpendiculares a las dos restantes, las cuales son paralelas entre sí, teniendo las cuatro la misma longitud" 
-    def __init__(self, side_length, bottom_left_corner):
-        super().__init__(width=side_length, height=side_length, bottom_left_corner=bottom_left_corner)    
+    def compute_length(self):
+        x_cathetus = self.end.x - self.start.x
+        y_cathetus = self.end.y - self.start.y
+        hypotenuse = ((x_cathetus ** 2) + (y_cathetus ** 2)) ** 0.5
+        return hypotenuse
+
+    def compute_slope(self):
+        x_cathetus = self.end.x - self.start.x
+        y_cathetus = self.end.y - self.start.y
+        hypotenuse = self.compute_length()
+        rad = asin(y_cathetus / hypotenuse)
+        slope = degrees(rad)
+        return abs(slope)
+
+    def compute_horizontal_cross(self):
+        if self.start.y > 0 and self.end.y > 0:
+            return False
+        if self.start.y < 0 and self.end.y < 0:
+            return False
+        else: return True
+
+    def compute_vertical_cross(self):
+        if self.start.x > 0 and self.end.x > 0:
+            return False
+        if self.start.x < 0 and self.end.x < 0:
+            return False
+        else: return True        
 ```
