@@ -316,7 +316,7 @@ if __name__ == "__main__":
 ```
 This bad boy above initialize the program. The End
 
-### Appendix
+### Appendix I
 The class diagram (non) representative of the program, i am so bad at this.
 ```mermaid
 classDiagram
@@ -393,4 +393,32 @@ classDiagram
     +string brand("Corona", "Budweiser", "Heineken")
 
     }
+```
+
+### Appendix II
+The rectangle class seen in class.
+```python
+class Rectangle:                                       
+    definition: str = "Entidad geometrica que representa la intersección de cuatro rectas, dos de ellas paralelas entre sí y perpendiculares a las dos restantes, las cuales son paralelas entre sí"  
+    def __init__(self, width: float=0, height: float=0, bottom_left_corner: Point=0):                
+        self.width = width                              
+        self.height = height  
+        self.bottom_left_corner = bottom_left_corner                          
+    def compute_area(self):
+        area = self.width * self.height
+        print(f"The area of the rectangle is: {area}")
+    def compute_perimeter(self):
+        perimeter = (self.width * 2) + (self.height * 2)
+        print(f"The perimeter of the rectangle is: {perimeter}")   
+    def compute_interference_point(self, point: Point=0):
+        x_total, y_total = self.width, self.height
+        x_min, y_min = self.bottom_left_corner.x, self.bottom_left_corner.y 
+        if (x_min <= point.x <= (x_min + x_total)) and (y_min <= point.y <= (y_min + y_total)): 
+            print("The point is in the rectangle")
+        else: print("The point is NOT in the rectangle")
+
+class Square(Rectangle):
+    definition: str = "Entidad geometrica que representa la intersección de cuatro rectas, un par de ellas paralelas entre sí y perpendiculares a las dos restantes, las cuales son paralelas entre sí, teniendo las cuatro la misma longitud" 
+    def __init__(self, side_length, bottom_left_corner):
+        super().__init__(width=side_length, height=side_length, bottom_left_corner=bottom_left_corner)    
 ```
